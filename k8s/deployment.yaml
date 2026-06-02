@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-detection-deployment
+  labels:
+    app: fraud-detection
+spec:
+  replicas: 3 # Diagram ke mutabiq multiple running pods (ReplicaSet) high availability ke liye
+  selector:
+    matchLabels:
+      app: fraud-detection
+  template:
+    metadata:
+      labels:
+        app: fraud-detection
+    spec:
+      containers:
+      - name: fraud-detection-api
+        image: fraud-detection-api:latest
+        imagePullPolicy: Never # Taake minikube local docker image use kare
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "200m"
+            memory: "256Mi"

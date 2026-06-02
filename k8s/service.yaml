@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fraud-detection-service
+  labels:
+    app: fraud-detection
+spec:
+  type: NodePort # Local minikube par test karne ke liye sab se behtar hai
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30080 # Browser/Client is port ke through hit karega
+  selector:
+    app: fraud-detection

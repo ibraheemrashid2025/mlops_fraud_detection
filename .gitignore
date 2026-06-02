@@ -1,0 +1,5 @@
+data/creditcard.csv
+venv/
+__pycache__/
+production_model/
+mlruns/
